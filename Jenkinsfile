@@ -1,8 +1,16 @@
 pipeline {
     agent { label 'teamhub' }
+     parameters {
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['dev', 'qa', 'prod'],
+            description: 'Select environment to deploy'
+        )
+    }
     environment {
         JOB_NAME= "teamhub"
         DOCKER_USER= "srinivasulu2004"
+        BRANCH_NAME = "${params.ENVIRONMENT == 'prod' ? 'master' : params.ENVIRONMENT}"
     }
 
     stages {
@@ -13,7 +21,7 @@ pipeline {
         }
         stage('Clone Repository') {
             steps {
-                git branch: 'master', credentialsId: 'github', url: 'https://github.com/priacc-innovations/version-3.2-prod'
+                git branch: '${BRANCH_NAME}', credentialsId: 'github', url: 'https://github.com/priacc-innovations/version-3.2-prod'
             }
         }
 
