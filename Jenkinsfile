@@ -36,9 +36,9 @@ pipeline {
                            sudo docker tag ${JOB-NAME}-backend ${DOCKER_USER}/backend
                            sudo docker tag ${JOB-NAME}-frontend ${DOCKER_USER}/frontend
                                                                                              ## here image name will be    '' <pipeline job name>-<service name which u mentioned in docker-compose.yml> ''
-                        '''                                                                      ##  example     "job-backend      latest      f7240d40bf2b   About a minute ago   306MB
+                                                                                             ##  example     "job-backend      latest      f7240d40bf2b   About a minute ago   306MB
                                                                                               ##              job-frontend     latest      d48a810bee41   2 minutes ago        52.9MB
-                        
+                        '''
                     }
                 }
                
